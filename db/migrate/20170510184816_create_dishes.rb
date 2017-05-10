@@ -7,6 +7,8 @@ class CreateDishes < ActiveRecord::Migration
       t.text :technique
 
       t.timestamps null: false
+
+      t.index [:name], unique: true
     end
   end
 end
