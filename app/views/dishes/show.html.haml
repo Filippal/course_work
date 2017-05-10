@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @dish.name
+%p
+  %b Instruction:
+  = @dish.instruction
+%p
+  %b Cooking time:
+  = @dish.cooking_time
+%p
+  %b Technique:
+  = @dish.technique
+
+= link_to 'Edit', edit_dish_path(@dish)
+\|
+= link_to 'Back', dishes_path

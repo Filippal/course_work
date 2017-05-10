@@ -1,0 +1,21 @@
+%h1 Listing dishes_ingredients
+
+%table
+  %thead
+    %tr
+      %th N ingredients
+      %th
+      %th
+      %th
+
+  %tbody
+    - @dishes_ingredients.each do |dishes_ingredient|
+      %tr
+        %td= dishes_ingredient.n_ingredients
+        %td= link_to 'Show', dishes_ingredient
+        %td= link_to 'Edit', edit_dishes_ingredient_path(dishes_ingredient)
+        %td= link_to 'Destroy', dishes_ingredient, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Dishes ingredient', new_dishes_ingredient_path

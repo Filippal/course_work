@@ -1,0 +1,16 @@
+= form_for @dish_category do |f|
+  - if @dish_category.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@dish_category.errors.count, "error")} prohibited this dish_category from being saved:"
+      %ul
+        - @dish_category.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_area :name
+  .field
+    = f.label :position
+    = f.number_field :position
+  .actions
+    = f.submit 'Save'
