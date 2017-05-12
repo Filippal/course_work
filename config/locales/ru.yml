@@ -4,22 +4,6 @@ ru:
     company:
       short_name: МПУ
       department: Кафедра
-  helpers:
-    submit:
-      create: Сохранить
-      submit: Сохранить
-      update: Сохранить
-  buttons:
-    edit: Редактировать
-    destroy: Удалить
-    show: Показать
-    confirm:
-      user: Действительно удалить пользователя?
-      role: Действительно удалить роль?
-    new: 
-      user: Новый пользователь
-      role: Новая роль
-  headers:
     users:
       edit: Редактирование пользователя
       new: Новый пользователь
@@ -28,6 +12,47 @@ ru:
       index: Список возможных ролей пользователей
       edit: Редактирование роли
       new: Новая роль
+    dishes:
+      index: Список Блюд
+      new-button: Новое блюдо
+      edit: Редактирование блюда
+      new: Создание блюда
+    dish_categories:
+      index: Список категорий блюд
+      new-button: Новая категория
+      edit: Редактирование категории
+      new: Создание категории
+    ingredients:
+      index: Список ингридиентов
+      new-button: Новый ингридиент
+      edit: Редактирование ингридиента
+      new: Создание ингридиента
+    dishes_ingredients:
+      index: Список количества ингридиентов
+      new-button: Новое количество ингридиента
+      edit: Редактирование количества ингридиентов
+      new: Создание количества ингридиентов
+  helpers:
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+    sure: Действительно удалить?
+  buttons:
+    edit: Редактировать
+    destroy: Удалить
+    show: Показать
+    confirm:
+      user: Действительно удалить пользователя?
+      role: Действительно удалить роль?
+    new:
+      user: Новый пользователь
+      role: Новая роль
+      dish: Новое блюдо
+      dish_category: Новая категория
+      dishes_ingredient: Новое количество ингредиента
+      ingredient: Новый ингредиент
+
   views:
     pagination:
       first: ⇤
@@ -38,6 +63,10 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      dish_category: Категория блюда
+      dish: Блюдо
+      ingredient: Ингридиент
+      dishes_ingredient: Количество ингридиента
     attributes:
       user:
         email: Пользовательское имя/электронная почта
@@ -49,10 +78,31 @@ ru:
         activation_token_expires_at: Дата прекращения действия токена активации
         last_login_at: Время последнего входа в систему
         role_users: Роли
-      role: 
+      role:
         name: Обозначение
         info: Краткое название
         full_info: Описание
+      dish_category:
+        name: Категория
+        position: Позиция
+        parent: Родитель
+      dish:
+        name: Блюдо
+        instruction: Инструкция
+        cooking_time: Время приготовления в минутах
+      ingredient:
+        describe: Ингридиент
+      dishes_ingredient:
+        n_ingredients: Количество
+        dish_id: Блюдо
+        ingredient_id: Ингредиент
+
+    errors:
+      models:
+        person:
+          attributes:
+            snils:
+              check_sum: имеет неправильную контрольную сумму
       # nested_start
       role_user: &role_users
       # nested_finish
@@ -63,4 +113,3 @@ ru:
       user/role_users:
         <<: *role_users
       # nested_finish
-          

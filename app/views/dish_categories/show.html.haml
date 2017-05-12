@@ -1,11 +1,10 @@
-%p#notice= notice
+%h1= @dish_category.id
 
-%p
-  %b Name:
-  = @dish_category.name
-%p
-  %b Position:
-  = @dish_category.position
+%dl
+  %dt= DishCategory.human_attribute_name(:name)
+  %dd= @dish_category.name
+  %dt= DishCategory.human_attribute_name(:position)
+  %dd= @dish_category.position
 
 = link_to 'Edit', edit_dish_category_path(@dish_category)
 \|

@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170510204639) do
     t.string   "name"
     t.text     "instruction"
     t.time     "cooking_time"
-    t.text     "technique"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

@@ -4,7 +4,6 @@ class CreateDishes < ActiveRecord::Migration
       t.string :name
       t.text :instruction
       t.time :cooking_time
-      t.text :technique
 
       t.timestamps null: false
 

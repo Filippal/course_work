@@ -1,8 +1,8 @@
-%p#notice= notice
+%h1= t('app.ingredients.show')
 
-%p
-  %b Describe:
-  = @ingredient.describe
+%dl
+  %dt= Ingredient.human_attribute_name(:describe)
+  %dd= @ingredient.describe
 
 = link_to 'Edit', edit_ingredient_path(@ingredient)
 \|

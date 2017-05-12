@@ -1,9 +1,13 @@
-%h1 Listing ingredients
+%h1= t('app.ingredients.index')
 
-%table
+%table.table.table-hover.table-striped.center
+  %caption
+    = link_to new_ingredient_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.ingredient')
   %thead
     %tr
-      %th Describe
+      %th= Ingredient.human_attribute_name(:Describe)
       %th
       %th
       %th
@@ -11,11 +15,16 @@
   %tbody
     - @ingredients.each do |ingredient|
       %tr
-        %td= ingredient.describe
-        %td= link_to 'Show', ingredient
-        %td= link_to 'Edit', edit_ingredient_path(ingredient)
-        %td= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' }
-
+        %td.center= ingredient.describe
+        %td
+          = link_to ingredient, class: 'btn btn-success' do
+            = fa_icon :eye
+        %td
+          = link_to edit_ingredient_path(ingredient), class: 'btn btn-info' do
+            = fa_icon :edit
+        %td
+          = link_to ingredient, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+            = fa_icon :times
 %br
 
 = link_to 'New Ingredient', new_ingredient_path

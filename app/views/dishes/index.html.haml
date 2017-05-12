@@ -1,26 +1,34 @@
-%h1 Listing dishes
+%h1= t('app.dishes.index')
 
-%table
+%table.table.table-hover.table-striped.center
+  %caption
+    = link_to new_dish_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.dish')
   %thead
     %tr
-      %th Name
-      %th Instruction
-      %th Cooking time
-      %th Technique
-      %th
-      %th
-      %th
+      %th= Dish.human_attribute_name(:name)
+      %th= Dish.human_attribute_name(:instruction)
+      %th= Dish.human_attribute_name(:cooking_time)
+      %th.p50
+      %th.p50
+      %th.p50
 
   %tbody
     - @dishes.each do |dish|
       %tr
-        %td= dish.name
-        %td= dish.instruction
-        %td= dish.cooking_time
-        %td= dish.technique
-        %td= link_to 'Show', dish
-        %td= link_to 'Edit', edit_dish_path(dish)
-        %td= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
+        %td.center= dish.name
+        %td.center= dish.instruction
+        %td.center= dish.cooking_time
+        %td
+          = link_to dish, class: 'btn btn-success' do
+            = fa_icon :eye
+        %td
+          = link_to edit_dish_path(dish), class: 'btn btn-info' do
+            = fa_icon :edit
+        %td
+          = link_to dish, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+            = fa_icon :times
 
 %br
 

@@ -12,5 +12,8 @@
   .field
     = f.label :position
     = f.number_field :position
+  .field
+    = f.label :parent
+    = f.select :parent, DishCategory.all.collect { |d| [ d.name, d.id ] }, include_blank: true
   .actions
     = f.submit 'Save'

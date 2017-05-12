@@ -1,8 +1,8 @@
 %p#notice= notice
 
-%p
-  %b N ingredients:
-  = @dishes_ingredient.n_ingredients
+%dl
+  %dt= DishesIngredient.human_attribute_name(:n_ingredients)
+  %dd= @dishes_ingredient.n_ingredients
 
 = link_to 'Edit', edit_dishes_ingredient_path(@dishes_ingredient)
 \|

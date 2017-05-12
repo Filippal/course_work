@@ -9,5 +9,14 @@
   .field
     = f.label :n_ingredients
     = f.text_field :n_ingredients
+
+  .field
+    = f.label :dish_id
+    = f.select :dish_id, Dish.all.map{|x| [x.name, x.id]}
+
+  .field
+    = f.label :ingredient_id
+    = f.select :ingredient_id, Ingredient.all.map{|x| [x.describe, x.id]}
+
   .actions
     = f.submit 'Save'

@@ -1,17 +1,12 @@
-%p#notice= notice
+%h1= @dish.id
 
-%p
-  %b Name:
-  = @dish.name
-%p
-  %b Instruction:
-  = @dish.instruction
-%p
-  %b Cooking time:
-  = @dish.cooking_time
-%p
-  %b Technique:
-  = @dish.technique
+%dl
+  %dt= Dish.human_attribute_name(:name)
+  %dd= @dish.name
+  %dt= Dish.human_attribute_name(:instruction)
+  %dd= @dish.instruction
+  %dt= Dish.human_attribute_name(:cooking_time)
+  %dd= @dish.cooking_time
 
 = link_to 'Edit', edit_dish_path(@dish)
 \|
