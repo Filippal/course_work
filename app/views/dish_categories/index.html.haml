@@ -19,6 +19,7 @@
       %tr
         %td.center= dish_category.name
         %td.center= dish_category.position
+        %td.center= dish_category.parent.try(:name)
         %td
           = link_to dish_category, class: 'btn btn-success' do
             = fa_icon :eye

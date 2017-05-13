@@ -13,7 +13,7 @@
     = f.label :position
     = f.number_field :position
   .field
-    = f.label :parent
-    = f.select :parent, DishCategory.all.collect { |d| [ d.name, d.id ] }, include_blank: true
+    = f.label :dish_category_id
+    = f.select :dish_category_id, DishCategory.all.collect { |d| [ d.name, d.id ] }, include_blank: true
   .actions
     = f.submit 'Save'

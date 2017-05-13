@@ -10,6 +10,7 @@
       %th= Dish.human_attribute_name(:name)
       %th= Dish.human_attribute_name(:instruction)
       %th= Dish.human_attribute_name(:cooking_time)
+      //%th= Dish.human_attribute_name(:dish_categories)
       %th.p50
       %th.p50
       %th.p50
@@ -20,6 +21,7 @@
         %td.center= dish.name
         %td.center= dish.instruction
         %td.center= dish.cooking_time
+        //%th.center= dish.dish_categories.map{|x| x.name}.join(" ")
         %td
           = link_to dish, class: 'btn btn-success' do
             = fa_icon :eye

@@ -86,6 +86,7 @@ ru:
         name: Категория
         position: Позиция
         parent: Родитель
+        dish_category_id: Родитель
       dish:
         name: Блюдо
         instruction: Инструкция
