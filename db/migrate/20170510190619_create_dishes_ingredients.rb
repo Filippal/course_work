@@ -2,8 +2,8 @@ class CreateDishesIngredients < ActiveRecord::Migration
   def change
     create_table :dishes_ingredients do |t|
       t.string :n_ingredients
-      t.references :dish, index: true, foreign_key: true, null: false
-      t.references :ingredient, index: true, foreign_key: true, null: false
+      t.references :dish, index: true, foreign_key: true
+      t.references :ingredient, index: true, foreign_key: true
 
       t.timestamps null: false
 

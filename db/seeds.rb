@@ -12,12 +12,12 @@ r1, r2 = Role.create_main_roles
 ru1 = RoleUser.create(role: r1, user: u1)
 ru2 = RoleUser.create(role: r2, user: u2)
 
-DishCategory.delete_all; Dish.delete_all; Ingredient.delete_all
+DishCategory.delete_all; Dish.destroy_all; Ingredient.destroy_all; DishesIngredient.destroy_all
 
 n = 10
 
 for i in 0 ... n
-  DishCategory.create(name: "name" + i.to_s, position: i)
+  DishCategory.create(name: "name" + i.to_s, position: i + 1)
   Dish.create(name: "name" + i.to_s, instruction: "instruction " + i.to_s, cooking_time: Time.now)
   Ingredient.create(describe: "describe" + i.to_s)
 end

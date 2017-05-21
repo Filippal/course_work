@@ -8,6 +8,7 @@ module DishCategoriesHelper
     pos = DishCategory.find_first_empty_space( DishCategory.where(dish_category_id: nil).pluck(:position) )
     mas = [["Не относится ни к какой", "", {'position': pos}]]
     DishCategory.all.map do |d|
+      next if d == dish_category
       # если выбран текущий родитель, то позиция уже есть dish_category.position
       if d == dish_category.parent
         mas << [ d.name, d.id, {'position': dish_category.position} ]
