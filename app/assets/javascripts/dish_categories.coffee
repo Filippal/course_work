@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+select_choose_position = ->
+  $("#dish_category_position").attr("value", $("option:selected").attr("position"))
+  $("#dish_category_dish_category_id").change(->
+    $("#dish_category_position").attr("value", $("option:selected").attr("position"))
+  )
+
+$(document).ready select_choose_position
+$(document).on 'page:load', select_choose_position

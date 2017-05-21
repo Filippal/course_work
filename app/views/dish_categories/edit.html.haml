@@ -1,7 +1,14 @@
-%h1= t('app.dish_categories.edit')
+=breadcrumb_tag do
+  %li.active
+    = t('headers.dish_categories.edit')
+  %li
+    = link_to(@dish_category.name, @dish_category)
+  %li
+    = link_to t('headers.dish_categories.index'), dish_categories_path
+  %li
+    Поваренная книга
+
+.page-header
+  %h1= t('headers.dish_categories.edit')
 
 = render 'form'
-
-= link_to 'Show', @dish_category
-\|
-= link_to 'Back', dish_categories_path

@@ -1,19 +1,12 @@
 = form_for @dish_category do |f|
-  - if @dish_category.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@dish_category.errors.count, "error")} prohibited this dish_category from being saved:"
-      %ul
-        - @dish_category.errors.full_messages.each do |message|
-          %li= message
+  = error_messages_for @dish_category
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
 
-  .field
-    = f.label :name
-    = f.text_area :name
-  .field
-    = f.label :position
-    = f.number_field :position
-  .field
-    = f.label :dish_category_id
-    = f.select :dish_category_id, DishCategory.all.collect { |d| [ d.name, d.id ] }, include_blank: true
-  .actions
-    = f.submit 'Save'
+  = render 'dish_category', f: f
+
+  .col-md-6
+    .form-group
+      = f.label :dish_category_id
+      -# options_parent см dish_categories_helper.rb
+      = f.select :dish_category_id, options_parent(@dish_category), {}, class: 'form-control'

@@ -52,7 +52,23 @@ ru:
       dish_category: Новая категория
       dishes_ingredient: Новое количество ингредиента
       ingredient: Новый ингредиент
-
+  headers:
+    users:
+      edit: Редактирование пользователя
+      new: Новый пользователь
+      index: Список пользователей
+    roles:
+      index: Список возможных ролей пользователей
+      edit: Редактирование роли
+      new: Новая роль
+    dish_categories:
+      edit: Редактирование категорий блюд
+      new: Новая категория блюд
+      index: Категории блюд
+    dishes:
+      edit: Редактирование блюд
+      new: Новое блюдо
+      index: Блюда
   views:
     pagination:
       first: ⇤
@@ -85,8 +101,8 @@ ru:
       dish_category:
         name: Категория
         position: Позиция
-        parent: Родитель
-        dish_category_id: Родитель
+        parent: К какой категории относится
+        dish_category_id: К какой категории относится
       dish:
         name: Блюдо
         instruction: Инструкция

@@ -1,5 +1,12 @@
-%h1= t('app.dish_categories.new')
+=breadcrumb_tag do
+  %li.active
+    = t('headers.dish_categories.new')
+  %li
+    = link_to 'Категории блюд', dish_categories_path
+  %li
+    Поваренная книга
+
+.page-header
+  %h1= t('headers.dish_categories.new')
 
 = render 'form'
-
-= link_to 'Back', dish_categories_path
