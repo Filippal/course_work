@@ -37,6 +37,8 @@ class DishCategory < ActiveRecord::Base
   # Например были позиции 1 2 3, при этом удалили 2, стало 1 3.
   # Данная функция находит ту самую вторую позицию.
   def self.find_first_empty_space(mas)
+    return 1 if mas.empty?
+    mas.sort!
     mas.each_with_index do |elem, index|
       return 1 if elem != index + 1 && index == 0
       if elem != index + 1
@@ -47,8 +49,19 @@ class DishCategory < ActiveRecord::Base
     end
   end
 
-  # устраняем петли
+
   def check_parent_self
+    # Выбираем нужную позицию
+    if parent
+      # выбор позиции, среди детей родителя
+      vals = parent.dish_categories.pluck("position")
+      # Если детей нет у текущего родителя, то позиция первого ребёнка = 1
+      self.position = DishCategory.find_first_empty_space( vals )
+    else
+      self.position = DishCategory.find_first_empty_space( DishCategory.where(dish_category_id: nil).pluck(:position) )
+    end
+
+    # устраняем петли
     obj1, obj2 = parent, parent
     # проверка, не сыылается ли объект сам на себя
     if obj1 == self

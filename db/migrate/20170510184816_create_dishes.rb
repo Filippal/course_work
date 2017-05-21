@@ -3,7 +3,7 @@ class CreateDishes < ActiveRecord::Migration
     create_table :dishes do |t|
       t.string :name
       t.text :instruction
-      t.time :cooking_time
+      t.text :cooking_time
 
       t.timestamps null: false
 

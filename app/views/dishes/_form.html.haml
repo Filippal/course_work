@@ -1,19 +1,31 @@
 = form_for @dish do |f|
-  - if @dish.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@dish.errors.count, "error")} prohibited this dish from being saved:"
-      %ul
-        - @dish.errors.full_messages.each do |message|
-          %li= message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :instruction
-    = f.text_area :instruction
-  .field
-    = f.label :cooking_time
-    = f.time_select :cooking_time
-  .actions
-    = f.submit 'Save'
+  = error_messages_for @dish
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+        = f.error_messages_for(:name)
+    .col-md-6
+      .form-group
+        = f.label :instruction
+        = f.text_area :instruction, rows: 1, class: 'form-control'
+        = f.error_messages_for(:instruction)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :cooking_time
+        = f.text_field :cooking_time, class: 'form-control'
+        = f.error_messages_for(:cooking_time)
+  .row.bottom20
+    .col-md-12
+      -# Кнопка для добавления связи блюда-ингреденты. См. dishes_ingredients_helper
+      = link_to_add_dishes_ingredients(f)
+  - i = 0
+  = f.fields_for(:dishes_ingredients) do |fr|
+    -# Скрытое поле - id связи. Иначе все связи будут новыми
+    = fr.hidden_field(:id)
+    -# Чтобы не повторять код, выделяем его часть в отдельный файл
+    = render('dishes/one_dishes_ingredients_form', fr: fr, i: i += 1)

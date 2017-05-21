@@ -4,4 +4,6 @@ class DishesIngredient < ActiveRecord::Base
 
   validates :n_ingredients, :dish_id, :ingredient_id, presence: true
   validates :dish_id, uniqueness: {scope: [:ingredient_id]}
+
+  accepts_nested_attributes_for :ingredient
 end
