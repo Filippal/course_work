@@ -1,0 +1,6 @@
+= ar.hidden_field(:id)
+.col-md-12
+  .form-group
+    = ar.label :describe
+    = ar.text_field :describe, class: 'form-control'
+    = ar.error_messages_for(:describe)

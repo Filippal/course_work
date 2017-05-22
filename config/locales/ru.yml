@@ -108,7 +108,7 @@ ru:
         instruction: Инструкция
         cooking_time: Время приготовления в минутах
       ingredient:
-        describe: Ингридиент
+        describe: Описание
       dishes_ingredient:
         n_ingredients: Количество
         dish_id: Блюдо

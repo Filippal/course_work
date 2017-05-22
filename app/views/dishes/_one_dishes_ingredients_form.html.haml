@@ -9,13 +9,21 @@
       .clearfix
     .panel-body
       .row
-        .col-md-6
+        .col-md-12
           .form-group
             = fr.label :n_ingredients
             = fr.text_field :n_ingredients, class: 'form-control'
             = fr.error_messages_for(:n_ingredients)
-        .col-md-6
-          .form-group
-            = fr.label :ingredient_id
-            = fr.select :ingredient_id, Ingredient.all.map{|x| [x.describe, x.id]}, {}, class: 'form-control'
-            = fr.error_messages_for(:ingredient_id)
+        -# .col-md-6
+        -#   .form-group
+        -#     = fr.label :ingredient_id
+        -#     = fr.select :ingredient_id, Ingredient.all.map{|x| [x.describe, x.id]}, {}, class: 'form-control'
+        -#     = fr.error_messages_for(:ingredient_id)
+      .row
+        %fieldset.center
+          %legend Ингредиент
+          %button.btn.btn-info.ingredient-change Cоздать/редактировать
+          -# new_ingredient_form см. ingredients_helper.rb и dishes_ingredients.coffee
+          %div.left{"data-content": "#{new_ingredient_form(fr)}"}
+            = fr.fields_for(:ingredient) do |ar|
+              = render 'dishes/one_ingredient_form', ar: ar
