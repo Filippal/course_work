@@ -113,13 +113,6 @@ ru:
         n_ingredients: Количество
         dish_id: Блюдо
         ingredient_id: Ингредиент
-
-    errors:
-      models:
-        person:
-          attributes:
-            snils:
-              check_sum: имеет неправильную контрольную сумму
       # nested_start
       role_user: &role_users
       # nested_finish

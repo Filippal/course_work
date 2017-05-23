@@ -1,0 +1,27 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Блюдо
+      = i
+      %span.toright
+        -# Кнопка для удаления связи. См. dish_categories_helper.rb
+        = link_to_remove_dish(fr)
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = fr.label :name
+            = fr.text_field :name, class: 'form-control'
+            = fr.error_messages_for(:name)
+        .col-md-6
+          .form-group
+            = fr.label :instruction
+            = fr.text_area :instruction, rows: 1, class: 'form-control'
+            = fr.error_messages_for(:instruction)
+      .row
+        .col-md-6
+          .form-group
+            = fr.label :cooking_time
+            = fr.text_field :cooking_time, class: 'form-control'
+            = fr.error_messages_for(:cooking_time)

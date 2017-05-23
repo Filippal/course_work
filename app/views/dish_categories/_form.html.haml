@@ -3,10 +3,28 @@
   .form-actions.bottom20
     = f.submit nil, class: 'btn btn-primary'
 
-  = render 'dish_category', f: f
+  .col-md-6
+    .form-group
+      = f.label :name
+      = f.text_area :name, class: 'form-control', rows: 1
+      = f.error_messages_for(:name)
+
+  -# автоматически меняется см. dish_categories.coffee
+  = f.hidden_field :position, value: 1
 
   .col-md-6
     .form-group
       = f.label :dish_category_id
       -# options_parent см dish_categories_helper.rb
       = f.select :dish_category_id, options_parent(@dish_category), {}, class: 'form-control'
+
+  .row.bottom20
+    .col-md-12
+      -# Кнопка для добавления связи. См. dish_categories_helper.rb
+      = link_to_add_dish(f)
+  - i = 0
+  = f.fields_for(:dishes) do |fr|
+    -# Скрытое поле - id связи. Иначе все связи будут новыми
+    = fr.hidden_field(:id)
+    -# Чтобы не повторять код, выделяем его часть в отдельный файл
+    = render('dish_categories/one_dish_form', fr: fr, i: i += 1)

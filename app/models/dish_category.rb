@@ -11,7 +11,7 @@ class DishCategory < ActiveRecord::Base
 
   before_save :check_parent_self
 
-  accepts_nested_attributes_for :parent
+  accepts_nested_attributes_for :dishes, allow_destroy: true
 
   private
 

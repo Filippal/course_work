@@ -22,4 +22,24 @@ module DishCategoriesHelper
   #   DishCategory.all.map{|x| mas << [x.name, x.id] unless x == dish_category}
   #   mas
   # end
+
+
+  def link_to_add_dish(form)
+    new_object = Dish.new
+    fields = form.fields_for(:dishes, new_object,
+      :child_index => 'new_dish') do |fr|
+      render('dish_categories/one_dish_form', fr: fr, i: 'Новое')
+    end
+    link_to(?#, class: 'btn btn-info',
+        id: 'add_dish_link', data: {content: "#{fields}"}) do
+      fa_icon("plus") + " Новое блюдо"
+    end
+  end
+
+  def link_to_remove_dish(form)
+    form.hidden_field(:_destroy, class: 'remove_fields') +
+        link_to(?#, class: 'remove_fields remove_dish') do
+      fa_icon('times', title: 'Удалить блюдо') + ' Удалить'
+    end
+  end
 end
