@@ -1,5 +1,6 @@
 class DishCategoriesController < ApplicationController
   before_action :set_dish_category, only: [:show, :edit, :update, :destroy]
+  before_action -> {check_app_auth ["admin", "operator"]}
 
   # GET /dish_categories
   # GET /dish_categories.json

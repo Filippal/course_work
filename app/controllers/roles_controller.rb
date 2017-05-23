@@ -1,5 +1,6 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
+  before_action -> {check_app_auth ["admin"]}, except: [:new, :create, :activate]
 
   # GET /roles
   # GET /roles.json

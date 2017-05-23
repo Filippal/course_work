@@ -103,23 +103,29 @@ ru:
         position: Позиция
         parent: К какой категории относится
         dish_category_id: К какой категории относится
-      dish:
+
+      dish: &dishes
         name: Блюдо
         instruction: Инструкция
         cooking_time: Время приготовления в минутах
-      ingredient:
+      dish_category/dishes:
+        <<: *dishes
+
+      ingredient: &ingredient
         describe: Описание
-      dishes_ingredient:
+      dishes_ingredients/ingredient:
+        <<: *ingredient
+
+      dishes_ingredient: &dishes_ingredients
         n_ingredients: Количество
         dish_id: Блюдо
         ingredient_id: Ингредиент
-      # nested_start
+      dish/dishes_ingredients:
+        <<: *dishes_ingredients
+
       role_user: &role_users
-      # nested_finish
         role: Роль
         role_id: Роль
         data: Параметры
-      # nested_start
       user/role_users:
         <<: *role_users
-      # nested_finish
