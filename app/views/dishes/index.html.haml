@@ -1,37 +1,36 @@
-%h1= t('app.dishes.index')
+=breadcrumb_tag do
+  %li.active
+    = t('headers.dishes.index')
+  %li
+    Поваренная книга
 
-%table.table.table-hover.table-striped.center
-  %caption
-    = link_to new_dish_path, class: 'btn btn-success' do
-      = fa_icon :plus
-      = t('buttons.new.dish')
-  %thead
-    %tr
-      %th= Dish.human_attribute_name(:name)
-      %th= Dish.human_attribute_name(:instruction)
-      %th= Dish.human_attribute_name(:cooking_time)
-      //%th= Dish.human_attribute_name(:dish_categories)
-      %th.p50
-      %th.p50
-      %th.p50
+.page-header
+  %h1= t('headers.dishes.index')
 
-  %tbody
-    - @dishes.each do |dish|
-      %tr
-        %td.center= dish.name
-        %td.center= dish.instruction
-        %td.center= dish.cooking_time
-        //%th.center= dish.dish_categories.map{|x| x.name}.join(" ")
-        %td
-          = link_to dish, class: 'btn btn-success' do
-            = fa_icon :eye
-        %td
-          = link_to edit_dish_path(dish), class: 'btn btn-info' do
-            = fa_icon :edit
-        %td
-          = link_to dish, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
-            = fa_icon :times
+= link_to new_dish_path, class: 'btn btn-success' do
+  = fa_icon :plus
+  = t('buttons.new.dish')
 
-%br
+.index_table
+  .row
+    .col-md-4.center= Dish.human_attribute_name(:name)
+    .col-md-4.center= Dish.human_attribute_name(:instruction)
+    .col-md-4.center= Dish.human_attribute_name(:cooking_time)
 
-= link_to 'New Dish', new_dish_path
+  - @dishes.each do |dish|
+    .row
+      .col-md-4.center= dish.name
+      .col-md-4.center= dish.instruction
+      .col-md-4.center.bottom20= dish.cooking_time
+      .col-md-12.center
+        = link_to dish, class: 'btn btn-warning' do
+          = fa_icon :eye
+          = t('buttons.show')
+        = link_to edit_dish_path(dish), class: 'btn btn-info' do
+          = fa_icon :edit
+          = t('buttons.edit')
+        = link_to dish, :method => :delete,
+        data: { confirm: t('buttons.confirm.dish') },
+        class: 'btn btn-danger' do
+          = fa_icon :times
+          = t('buttons.destroy')

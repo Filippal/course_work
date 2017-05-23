@@ -45,6 +45,8 @@ ru:
     confirm:
       user: Действительно удалить пользователя?
       role: Действительно удалить роль?
+      dish_category: Действительно удалить категорию?
+      dish: Действительно удалить блюдо?
     new:
       user: Новый пользователь
       role: Новая роль
@@ -105,7 +107,7 @@ ru:
         dish_category_id: К какой категории относится
 
       dish: &dishes
-        name: Блюдо
+        name: Название
         instruction: Инструкция
         cooking_time: Время приготовления в минутах
       dish_category/dishes:

@@ -29,7 +29,7 @@ class DishCategoriesController < ApplicationController
 
     respond_to do |format|
       if @dish_category.save
-        format.html { redirect_to @dish_category, notice: 'Dish category was successfully created.' }
+        format.html { redirect_to @dish_category, notice: 'Категория блюда создана.' }
         format.json { render :show, status: :created, location: @dish_category }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class DishCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @dish_category.update(dish_category_params)
-        format.html { redirect_to @dish_category, notice: 'Dish category was successfully updated.' }
+        format.html { redirect_to @dish_category, notice: 'Категория блюда обновлена.' }
         format.json { render :show, status: :ok, location: @dish_category }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class DishCategoriesController < ApplicationController
   def destroy
     @dish_category.destroy
     respond_to do |format|
-      format.html { redirect_to dish_categories_url, notice: 'Dish category was successfully destroyed.' }
+      format.html { redirect_to dish_categories_url, notice: 'Категория блюда удалена.' }
       format.json { head :no_content }
     end
   end

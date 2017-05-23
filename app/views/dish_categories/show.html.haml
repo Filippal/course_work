@@ -1,11 +1,15 @@
-%h1= @dish_category.id
+=breadcrumb_tag do
+  %li.active
+    = @dish_category.name
+  %li
+    = link_to 'Категории блюд', dish_categories_path
+  %li
+    Поваренная книга
+
+%h1= @dish_category.name
 
 %dl
   %dt= DishCategory.human_attribute_name(:name)
   %dd= @dish_category.name
   %dt= DishCategory.human_attribute_name(:position)
   %dd= @dish_category.position
-
-= link_to 'Edit', edit_dish_category_path(@dish_category)
-\|
-= link_to 'Back', dish_categories_path
