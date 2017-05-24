@@ -1,9 +1,12 @@
-change_form_ingredient = (elem) ->
-  elem = elem.next()
-  data = elem.attr("data-content")
-  elem.attr("data-content", elem.html())
-  elem.html(data)
-  false
+change_form_ingredient = ->
+  $(".ingredient-select").change ->
+    elem = $(this).parent().parent().parent().next().find(".ingredient-main-fields")
+    if ($(this).val() == $(this).attr("data-current-id"))
+      elem.html(elem.attr("data-content-exist"))
+    else if ($(this).val() == "")
+      elem.html(elem.attr("data-content-new"))
+    else
+      elem.html("")
 
 # Удаление связи блюдо - ингредиент
 @delete_one_d_i = (link)->
@@ -27,10 +30,10 @@ change_form_ingredient = (elem) ->
     # Вставляем на страницу
     $(this).parent().parent().after(content)
 
-    elem = $(".panel-info").first().find(".ingredient-change")
-    change_form_ingredient(elem)
-    elem.remove()
-
+    elem = $(this).parent().parent().next().find(".ingredient-main-fields")
+    elem.html(elem.attr("data-content-new"))
+    change_form_ingredient()
+    
     panel = $(this).parent().parent().parent().find('.panel-info').first()
     panel.find('a.remove_d_i').on 'click', ->
       window.delete_one_d_i($(this))
@@ -40,7 +43,7 @@ change_form_ingredient = (elem) ->
 d_i_ready = ->
   window.add_new_d_i()
   window.del_all_d_i()
-  $(".ingredient-change").click -> change_form_ingredient($(this))
+  change_form_ingredient()
 
 $(document).on 'page:load', d_i_ready # Включаем при ajax обновлении страницы
 $(document).ready d_i_ready # Включаем при обычном обновлении страницы

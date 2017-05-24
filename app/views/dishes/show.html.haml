@@ -15,3 +15,15 @@
   %dd= @dish.instruction
   %dt= Dish.human_attribute_name(:cooking_time)
   %dd= @dish.cooking_time
+
+= link_to @dish, class: 'btn btn-warning' do
+  = fa_icon :eye
+  = t('buttons.show')
+= link_to edit_dish_path(@dish), class: 'btn btn-info' do
+  = fa_icon :edit
+  = t('buttons.edit')
+= link_to @dish, :method => :delete,
+data: { confirm: t('buttons.confirm.dish') },
+class: 'btn btn-danger' do
+  = fa_icon :times
+  = t('buttons.destroy')

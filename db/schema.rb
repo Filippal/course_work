@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "dish_categories", force: :cascade do |t|
-    t.text     "name"
-    t.integer  "position"
+    t.text     "name",             null: false
+    t.integer  "position",         null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "dish_category_id"
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   add_index "dish_categories_dishes", ["dish_id", "dish_category_id"], name: "index_dish_categories_dishes_on_dish_id_and_dish_category_id", using: :btree
 
   create_table "dishes", force: :cascade do |t|
-    t.string   "name"
-    t.text     "instruction"
-    t.text     "cooking_time"
+    t.string   "name",         null: false
+    t.text     "instruction",  null: false
+    t.text     "cooking_time", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   add_index "dishes", ["name"], name: "index_dishes_on_name", unique: true, using: :btree
 
   create_table "dishes_ingredients", force: :cascade do |t|
-    t.string   "n_ingredients"
+    t.string   "n_ingredients", null: false
     t.integer  "dish_id"
     t.integer  "ingredient_id"
     t.datetime "created_at",    null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   add_index "dishes_ingredients", ["ingredient_id"], name: "index_dishes_ingredients_on_ingredient_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
-    t.text     "describe"
+    t.text     "describe",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

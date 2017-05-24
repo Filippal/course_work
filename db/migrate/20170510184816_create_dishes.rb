@@ -1,9 +1,9 @@
 class CreateDishes < ActiveRecord::Migration
   def change
     create_table :dishes do |t|
-      t.string :name
-      t.text :instruction
-      t.text :cooking_time
+      t.string :name, null: false
+      t.text :instruction, null: false
+      t.text :cooking_time, null: false
 
       t.timestamps null: false
 

@@ -115,6 +115,7 @@ ru:
 
       ingredient: &ingredient
         describe: Описание
+        id: Выбор существующего (если пусто, то создание нового)
       dishes_ingredients/ingredient:
         <<: *ingredient
 
