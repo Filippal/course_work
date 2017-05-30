@@ -9,4 +9,18 @@ class Dish < ActiveRecord::Base
   validates :instruction, presence: true
   validates :cooking_time, presence: true, numericality: {only_integer: true, greater_than: 0}
 
+  def self.search(params)
+    query = Dish.eager_load(:dishes_ingredients, :dish_categories, :ingredient)
+    params.each do |entity, hsh|
+      hsh.each do |atr, val|
+        next if val.nil? || val.to_s.blank?
+        query = query.where( entity.pluralize.to_sym => {atr => val} )
+      end
+    end
+    return query
+  end
+
+  def self.attributes_names
+    self.new.attributes.keys - ['created_at', 'updated_at']
+  end
 end

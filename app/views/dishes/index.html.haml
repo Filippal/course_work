@@ -7,6 +7,12 @@
 .page-header
   %h1= t('headers.dishes.index')
 
+
+= link_to search_dishes_path, class: 'btn btn-warning' do
+  = fa_icon :search
+  = t('app.dishes.search')
+.pull-right
+
 = link_to new_dish_path, class: 'btn btn-success' do
   = fa_icon :plus
   = t('buttons.new.dish')

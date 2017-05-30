@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :dishes_ingredients
   resources :ingredients
-  resources :dishes
+  resources :dishes do
+  collection do
+    get :search
+    post :search
+  end
+end
   resources :dish_categories
   resources :role_users
   resources :roles

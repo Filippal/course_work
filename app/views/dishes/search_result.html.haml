@@ -1,0 +1,21 @@
+=breadcrumb_tag do
+  %li.active
+    = t('headers.models')
+  %li.active
+    = link_to t('headers.dishes.index'), dishes_path
+  %li.active
+    = link_to t('headers.dishes.search'), search_dishes_path
+  %li
+    = t('headers.dishes.result')
+
+%table.table.table-hover.table-striped.center
+  %thead
+    %th= Dish.human_attribute_name(:name)
+    %th= Dish.human_attribute_name(:instruction)
+    %th= Dish.human_attribute_name(:cooking_time)
+  %tbody
+    - @dishes.each do |dish|
+      %tr
+        %td= book.name
+        %td= book.instruction
+        %td= book.cooking_time

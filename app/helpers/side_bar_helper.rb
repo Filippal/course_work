@@ -27,6 +27,9 @@ module SideBarHelper
       :name => 'Поваренная книга',
       :icon => 'book',
       :children => [
+      {:name => 'Поиск',
+        :controller => :dishes, :action => :search,
+        :icon => 'search'},
       {:name => 'Категории блюд',
        :controller => :dish_categories, :action => :index,
        :icon => 'search'},

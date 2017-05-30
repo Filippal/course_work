@@ -1,0 +1,68 @@
+
+=breadcrumb_tag do
+  %li.active
+    = t('app.dishes.search')
+  %li
+    = link_to 'Блюда', dishes_path
+  %li
+    Блюда
+
+.page-header
+%h3= t('.header_dish')
+
+= form_tag search_dishes_path, method: 'get' do
+  .form-actions
+    = submit_tag nil, class: 'btn btn-primary'
+
+  .form-wrapper
+    .form-header
+      = t('forms.dish.dish')
+    .row.form-body
+      .col-md-5
+        = label_tag Dish.human_attribute_name("name")
+        = text_field_tag 'search[dish][name]', nil, class: 'form-control'
+      .col-md-2
+        = label_tag Dish.human_attribute_name("instruction")
+        = text_field_tag 'search[dish][instruction]', nil, class: 'form-control'
+      .col-md-3
+        = label_tag Dish.human_attribute_name("cooking_time")
+        = number_field_tag 'search[dish][cooking_time]', nil, class: 'form-control'
+
+-#   .form-wrapper
+-#     .form-header
+-#       = t('forms.book.authors')
+-#     .row.form-body
+-#       .col-md-3
+-#         = label_tag Author.human_attribute_name('fn')
+-#         = text_field_tag 'search[author][fn]', nil, class: 'form-control'
+-#       .col-md-3
+-#         = label_tag Author.human_attribute_name('ln')
+-#         = text_field_tag 'search[author][ln]', nil, class: 'form-control'
+-#       .col-md-3
+-#         = label_tag Author.human_attribute_name('sn')
+-#         = text_field_tag 'search[author][sn]', nil, class: 'form-control'
+-#       .col-md-3
+-#         = label_tag Author.human_attribute_name('author_index')
+-#         = text_field_tag 'search[author][author_index]', nil, class: 'form-control'
+-#
+-#   .form-wrapper
+-#     .form-header
+-#       = t('forms.shelf.shelf')
+-#     .row.form-body
+-#       .col-md-6
+-#         = label_tag Location.human_attribute_name('rack_number')
+-#         = number_field_tag 'search[location][rack_number]', nil, class: 'form-control'
+-#       .col-md-6
+-#         = label_tag Shelf.human_attribute_name('shelf_index')
+-#         = text_field_tag 'search[shelf][shelf_index]', nil, class: 'form-control'
+-#
+-#   .form-wrapper
+-#     .form-header
+-#       = t('forms.shelf.hall')
+-#     .row.form-body
+-#       .col-md-6
+-#         = label_tag Hall.human_attribute_name('short_name')
+-#         = text_field_tag 'search[hall][short_name]', nil, class: 'form-control'
+-#       .col-md-6
+-#         = label_tag Hall.human_attribute_name('full_name')
+-# = text_area_tag 'search[hall][full_name]', nil, class: 'form-control'

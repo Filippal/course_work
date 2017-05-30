@@ -87,4 +87,7 @@ class DishCategory < ActiveRecord::Base
     true
   end
 
+  def self.attributes_names
+    self.new.attributes.keys - ['created_at', 'updated_at']
+  end
 end
