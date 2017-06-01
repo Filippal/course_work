@@ -1,4 +1,10 @@
 ru:
+  dishes:
+    search:
+      from: С
+      to: По
+      disable_ingredients: Отключить поиск по полям ингредиента
+
   app:
     name: Базовое приложение
     company:
@@ -17,6 +23,7 @@ ru:
       new-button: Новое блюдо
       edit: Редактирование блюда
       new: Создание блюда
+      search: Поиск блюд
     dish_categories:
       index: Список категорий блюд
       new-button: Новая категория

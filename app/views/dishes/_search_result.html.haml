@@ -1,0 +1,12 @@
+- @dishes.each do |dish|
+  .col-md-6
+    %ul.list-group
+      %li.list-group-item
+        %span.badge= dish.name
+        = Dish.human_attribute_name(:name)
+      %li.list-group-item
+        %span.badge= dish.instruction
+        = Dish.human_attribute_name(:instruction)
+      %li.list-group-item
+        %span.badge= dish.cooking_time
+        = Dish.human_attribute_name(:cooking_time)

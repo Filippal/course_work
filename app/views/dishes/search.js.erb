@@ -1,0 +1,5 @@
+<% if @dishes.present? %>
+  $("#insert_found_dishes").html("<%= j render 'search_result' %> ")
+<% else %>
+  $("#insert_found_dishes").html("<p>Не найдено</p>")
+<% end %>

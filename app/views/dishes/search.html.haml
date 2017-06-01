@@ -1,4 +1,3 @@
-
 =breadcrumb_tag do
   %li.active
     = t('app.dishes.search')
@@ -8,61 +7,65 @@
     Блюда
 
 .page-header
-%h3= t('.header_dish')
+  %h3= t('app.dishes.search')
 
-= form_tag search_dishes_path, method: 'get' do
-  .form-actions
-    = submit_tag nil, class: 'btn btn-primary'
-
-  .form-wrapper
-    .form-header
-      = t('forms.dish.dish')
-    .row.form-body
-      .col-md-5
+= form_tag search_dishes_path, method: 'get', remote: true do
+  %h3 Поиск по полям блюд
+  .row
+    .col-md-6
+      .form-group
         = label_tag Dish.human_attribute_name("name")
         = text_field_tag 'search[dish][name]', nil, class: 'form-control'
-      .col-md-2
+    .col-md-6
+      .form-group
         = label_tag Dish.human_attribute_name("instruction")
         = text_field_tag 'search[dish][instruction]', nil, class: 'form-control'
-      .col-md-3
-        = label_tag Dish.human_attribute_name("cooking_time")
-        = number_field_tag 'search[dish][cooking_time]', nil, class: 'form-control'
+  .row
+    %fieldset
+      %legend= Dish.human_attribute_name("cooking_time")
+      .col-md-6
+        .form-group
+          = label_tag "search[dish][cooking_time_from]", t('.from')
+          = number_field_tag "search[dish][cooking_time_from]", nil, class: 'form-control',
+            value: Dish.pluck(:cooking_time).min
+      .col-md-6
+        .form-group
+          = label_tag "search[dish][cooking_time_to]", t('.to')
+          = number_field_tag "search[dish][cooking_time_to]", nil, class: 'form-control',
+            value: Dish.pluck(:cooking_time).max
+  %h3 Поиск по полям категорий
+  .row
+    .col-md-6
+      .form-group
+        = label_tag DishCategory.human_attribute_name("name")
+        = text_field_tag 'search[dish_category][name]', nil, class: 'form-control'
+  %h3 Поиск по полям ингредиентов
+  .row
+    .col-md-12
+      .form-group
+        = check_box_tag "search[ingredient][disable]"
+        = label_tag "search[ingredient][disable]", t(".disable_ingredients")
+  .row
+    %fieldset
+      %legend= DishesIngredient.human_attribute_name("n_ingredients")
+      .col-md-6
+        .form-group
+          = label_tag "search[ingredient][n_ingredients_from]", t('.from')
+          = number_field_tag "search[ingredient][n_ingredients_from]", nil, class: 'form-control',
+            value: DishesIngredient.pluck(:n_ingredients).min
+      .col-md-6
+        .form-group
+          = label_tag "search[ingredient][n_ingredients_to]", t('.to')
+          = number_field_tag "search[ingredient][n_ingredients_to]", nil, class: 'form-control',
+            value: DishesIngredient.pluck(:n_ingredients).max
+  .row
+    .col-md-6
+      .form-group
+        = label_tag Ingredient.human_attribute_name("describe")
+        = text_field_tag 'search[ingredient][describe]', nil, class: 'form-control'
 
--#   .form-wrapper
--#     .form-header
--#       = t('forms.book.authors')
--#     .row.form-body
--#       .col-md-3
--#         = label_tag Author.human_attribute_name('fn')
--#         = text_field_tag 'search[author][fn]', nil, class: 'form-control'
--#       .col-md-3
--#         = label_tag Author.human_attribute_name('ln')
--#         = text_field_tag 'search[author][ln]', nil, class: 'form-control'
--#       .col-md-3
--#         = label_tag Author.human_attribute_name('sn')
--#         = text_field_tag 'search[author][sn]', nil, class: 'form-control'
--#       .col-md-3
--#         = label_tag Author.human_attribute_name('author_index')
--#         = text_field_tag 'search[author][author_index]', nil, class: 'form-control'
--#
--#   .form-wrapper
--#     .form-header
--#       = t('forms.shelf.shelf')
--#     .row.form-body
--#       .col-md-6
--#         = label_tag Location.human_attribute_name('rack_number')
--#         = number_field_tag 'search[location][rack_number]', nil, class: 'form-control'
--#       .col-md-6
--#         = label_tag Shelf.human_attribute_name('shelf_index')
--#         = text_field_tag 'search[shelf][shelf_index]', nil, class: 'form-control'
--#
--#   .form-wrapper
--#     .form-header
--#       = t('forms.shelf.hall')
--#     .row.form-body
--#       .col-md-6
--#         = label_tag Hall.human_attribute_name('short_name')
--#         = text_field_tag 'search[hall][short_name]', nil, class: 'form-control'
--#       .col-md-6
--#         = label_tag Hall.human_attribute_name('full_name')
--# = text_area_tag 'search[hall][full_name]', nil, class: 'form-control'
+  .form-actions.bottom20
+    = submit_tag nil, class: 'btn btn-primary'
+
+#insert_found_dishes
+  %p Не найдено

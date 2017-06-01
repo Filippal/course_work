@@ -6,8 +6,4 @@ class DishesIngredient < ActiveRecord::Base
   validates :dish_id, uniqueness: {scope: [:ingredient_id]}
 
   accepts_nested_attributes_for :ingredient
-
-  def self.attributes_names
-    self.new.attributes.keys - ['created_at', 'updated_at']
-  end
 end

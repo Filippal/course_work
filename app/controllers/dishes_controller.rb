@@ -3,12 +3,14 @@ class DishesController < ApplicationController
   before_action -> {check_app_auth ["admin", "operator"]}
 
   def search
-    # raise params.to_s
-    if params.has_key?(:search)
-      @books = Dish.search(search_params)
-      render 'search_result' and return
+    if params["search"].present?
+      @dishes = Dish.search(params["search"])
     else
-      @books = []
+      @dishes = []
+    end
+    respond_to do |format|
+      format.js
+      format.html
     end
   end
 
@@ -60,15 +62,6 @@ class DishesController < ApplicationController
         format.json { render json: @dish.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def search_params
-    params.require(:search).permit(
-      dish:              Dish.attributes_names.map(&:to_sym),
-      dish_category:     Dish_category.attributes_names.map(&:to_sym),
-      dishes_ingredient: Dishes_ingredient.attributes_names.map(&:to_sym),
-      ingredient:        Ingredient.attributes_names.map(&:to_sym),
-    )
   end
 
   # DELETE /dishes/1
