@@ -16,6 +16,15 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "clients", force: :cascade do |t|
+    t.string   "name",       limit: 200, null: false
+    t.string   "phone",      limit: 50,  null: false
+    t.string   "address"
+    t.string   "email",      limit: 50,  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -78,6 +87,48 @@ ActiveRecord::Schema.define(version: 20170510204639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "product_id",        null: false
+    t.integer  "order_id",          null: false
+    t.integer  "quantity_at_order", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "lists", ["order_id"], name: "index_lists_on_order_id", using: :btree
+  add_index "lists", ["product_id"], name: "index_lists_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "client_id",       null: false
+    t.integer  "order_number",    null: false
+    t.string   "payment_method",  null: false
+    t.string   "delivery_method", null: false
+    t.text     "list_products"
+    t.float    "cost_goods",      null: false
+    t.float    "total_cost",      null: false
+    t.date     "order_date",      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "orders", ["client_id"], name: "index_orders_on_client_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "title",             limit: 200, null: false
+    t.text     "short_description",             null: false
+    t.text     "full_description"
+    t.string   "list_id_images",                null: false
+    t.float    "base_price",                    null: false
+    t.float    "current_price",                 null: false
+    t.integer  "quantity_in_stock",             null: false
+    t.integer  "article",                       null: false
+    t.integer  "minimum_quantity",              null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "products", ["article"], name: "index_products_on_article", unique: true, using: :btree
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false
@@ -146,6 +197,9 @@ ActiveRecord::Schema.define(version: 20170510204639) do
   add_foreign_key "dish_categories", "dish_categories"
   add_foreign_key "dishes_ingredients", "dishes"
   add_foreign_key "dishes_ingredients", "ingredients"
+  add_foreign_key "lists", "orders"
+  add_foreign_key "lists", "products"
+  add_foreign_key "orders", "clients"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
 end
