@@ -13,6 +13,13 @@ class DishCategory < ActiveRecord::Base
 
   accepts_nested_attributes_for :dishes, allow_destroy: true
 
+  def dish_ids=(params)
+    params.split.uniq.each do |id|
+      d = Dish.find_by(id: id.to_i)
+      self.dishes << d if d && !(self.dishes.include?(d))
+    end
+  end
+
   private
 
   # перестройка дерева перед удалением

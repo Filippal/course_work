@@ -3,6 +3,8 @@
   .form-actions.bottom20
     = f.submit nil, class: 'btn btn-primary'
 
+  = f.hidden_field :dish_ids
+
   .col-md-6
     .form-group
       = f.label :name
@@ -17,6 +19,23 @@
       = f.label :dish_category_id
       -# options_parent см dish_categories_helper.rb
       = f.select :dish_category_id, options_parent(@dish_category), {}, class: 'form-control'
+
+  .col-md-12
+    #exist-dishes
+      %h3 Добавление существующих блюд
+      .row
+        .col-md-6
+          = select_tag :dishes, options_from_collection_for_select(Dish.all, "id", "name"), class: 'form-control', id: "dishes-select"
+        .col-md-6
+          #add-exist-dish.btn.btn-info
+            = fa_icon :plus
+            = t('buttons.add')
+          #remove-exist-dish.btn.btn-danger
+            = fa_icon :times
+            = t('buttons.destroy')
+      .row
+        .col-md-12
+          #list-exist-dishes
 
   .row.bottom20
     .col-md-12

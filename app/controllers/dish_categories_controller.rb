@@ -70,7 +70,7 @@ class DishCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_category_params
-      params.require(:dish_category).permit(:name, :position, :dish_category_id,
+      params.require(:dish_category).permit(:name, :position, :dish_category_id, :dish_ids,
         dishes_attributes: [:id, :_destroy, :name, :instruction, :cooking_time])
     end
 end
